@@ -37,7 +37,7 @@ jobs:
             Set-Content -Path .\dist\SHA256SUMS.txt -Encoding ascii
 
       - name: Attest Build Provenance
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: 'dist/*'
 
