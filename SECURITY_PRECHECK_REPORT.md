@@ -2,11 +2,11 @@
 
 Project: Sound Device Switcher
 
-Repository: https://github.com/ifghjb169-hash/voicemeeter
+Repository: https://github.com/secure-artifacts/voicemeeter
 
-Release: https://github.com/ifghjb169-hash/voicemeeter/releases/tag/v1.0.0
+Release: https://github.com/secure-artifacts/voicemeeter/releases/tag/v1.0.0
 
-Checked at: 2026-05-02T20:24:38+01:00
+Checked at: 2026-05-02T20:58:07+01:00
 
 ## Result
 
@@ -16,16 +16,16 @@ No blocking security issues were found during the second-stage precheck.
 
 ## Repository
 
-- Owner/repo: ifghjb169-hash/voicemeeter
+- Owner/repo: secure-artifacts/voicemeeter
 - Visibility: public
 - Default branch: main
 
 ## Release Verification
 
 - Release tag: v1.0.0
-- Release workflow: https://github.com/ifghjb169-hash/voicemeeter/actions/runs/25258689521
+- Release workflow: https://github.com/secure-artifacts/voicemeeter/actions/runs/25260409897
 - Release workflow conclusion: success
-- CodeQL workflow: https://github.com/ifghjb169-hash/voicemeeter/actions/runs/25258677355
+- CodeQL workflow: https://github.com/secure-artifacts/voicemeeter/actions/runs/25260486279
 - CodeQL workflow conclusion: success
 
 ## Release Assets
@@ -42,7 +42,7 @@ Primary artifact: SoundDeviceSwitcher-windows-x64.zip
 SHA256:
 
 ```text
-2a30089c9fcf498b812ed5f88ef11846d7f9d56d6f2214cfbcb11187c7817ab6
+0a29046e92d85a6498963763c43275cf7d48126e582a07f384338fc636272c73
 ```
 
 GitHub Attestations found for primary artifact: 1
@@ -60,6 +60,12 @@ GitHub Attestations found for primary artifact: 1
 - Secret Scanning alerts: 0
 - Dependabot alerts: 0
 
+## Review Submission
+
+- Review type: software
+- Review submission: submitted by user
+- Teams notification: generated for administrator review
+
 ## Conclusion
 
-The repository and release passed the second-stage security precheck. The release artifact is present, hashed, and covered by GitHub build provenance attestation. No open Code Scanning, Secret Scanning, or Dependabot alerts were found at the time of this report.
+The organization repository and release passed the security precheck. The release artifact is present, hashed, and covered by GitHub build provenance attestation. No open Code Scanning, Secret Scanning, or Dependabot alerts were found at the time of this report. The project review request has been submitted and is waiting for administrator review.
