@@ -1,0 +1,32 @@
+# Build output
+bin/
+dist/
+*.zip
+*.exe
+*.pdb
+*.user
+
+# Secrets and local config
+.env
+.env.*
+*.pem
+*.pfx
+*.key
+*.crt
+*.cer
+*.p12
+
+# Editor and OS files
+.vs/
+.vscode/
+.idea/
+*.suo
+*.swp
+.DS_Store
+Thumbs.db
+
+# Common dependency/cache folders
+node_modules/
+__pycache__/
+.pytest_cache/
+coverage/
