@@ -365,16 +365,30 @@ namespace SoundDeviceSwitcher
                 return;
             }
 
-            int distance = Math.Max(split.Panel1MinSize, (split.ClientSize.Width - split.SplitterWidth) / 2);
+            int minDistance = split.Panel1MinSize;
             int maxDistance = split.ClientSize.Width - split.SplitterWidth - split.Panel2MinSize;
-            if (maxDistance > 0)
+            if (maxDistance < minDistance)
             {
-                distance = Math.Min(distance, maxDistance);
+                return;
             }
 
-            if (distance > 0 && split.SplitterDistance != distance)
+            int preferredDistance = (split.ClientSize.Width - split.SplitterWidth) / 2;
+            int distance = Math.Max(minDistance, Math.Min(preferredDistance, maxDistance));
+
+            try
             {
-                split.SplitterDistance = distance;
+                if (split.SplitterDistance != distance)
+                {
+                    split.SplitterDistance = distance;
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // The split container can briefly report a transitional width during layout.
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                // The split container can briefly report a transitional width during layout.
             }
         }
 
@@ -881,7 +895,7 @@ namespace SoundDeviceSwitcher
             var result = new List<AudioDevice>();
             foreach (AudioDevice device in devices)
             {
-                if (IsPrimaryVoicemeeterVolumeDevice(device) || IsPhysicalVolumeDevice(device))
+                if (IsPhysicalVolumeDevice(device))
                 {
                     result.Add(device);
                 }
@@ -893,29 +907,6 @@ namespace SoundDeviceSwitcher
         private static bool IsPhysicalVolumeDevice(AudioDevice device)
         {
             return device != null && !DeviceFilters.LooksVirtual(device.FullName);
-        }
-
-        private static bool IsPrimaryVoicemeeterVolumeDevice(AudioDevice device)
-        {
-            if (device == null)
-            {
-                return false;
-            }
-
-            string name = NormalizeText(device.Name);
-            string value = NormalizeText(device.FullName);
-            if (value.Contains("aux"))
-            {
-                return false;
-            }
-
-            if (device.Flow == SoundDeviceFlow.Output)
-            {
-                return name.Contains("voicemeeter input") || name.Contains("voicemeter input");
-            }
-
-            return name.Contains("voicemeeter output") || name.Contains("voicemeter output") ||
-                name.Contains("voicemeeter b1") || name.Contains("voicemeter b1");
         }
 
         private static string NormalizeText(string value)
@@ -984,11 +975,6 @@ namespace SoundDeviceSwitcher
 
         private void ApplyStartupDefaultsIfNeeded()
         {
-            if (_settings.HasUserSystemSelection)
-            {
-                return;
-            }
-
             try
             {
                 AudioDevice output;
