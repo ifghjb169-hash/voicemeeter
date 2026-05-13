@@ -16,6 +16,11 @@ if (-not $sources) {
 }
 
 $output = Join-Path $outDir "SoundDeviceSwitcher.exe"
+$icon = Join-Path $root "assets\SoundDeviceSwitcher.ico"
+$iconArgs = @()
+if (Test-Path $icon) {
+    $iconArgs += "/win32icon:$icon"
+}
 
 & $compiler `
     /nologo `
@@ -23,6 +28,7 @@ $output = Join-Path $outDir "SoundDeviceSwitcher.exe"
     /platform:x64 `
     /optimize+ `
     "/out:$output" `
+    $iconArgs `
     /reference:System.dll `
     /reference:System.Core.dll `
     /reference:System.Drawing.dll `

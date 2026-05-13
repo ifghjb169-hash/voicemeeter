@@ -57,6 +57,7 @@ namespace SoundDeviceSwitcher
         public MainForm()
         {
             Text = "Sound Device Switcher";
+            ApplyApplicationIcon();
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(900, 560);
             Size = new Size(1040, 680);
@@ -65,6 +66,22 @@ namespace SoundDeviceSwitcher
 
             BuildInterface();
             ApplyLanguage();
+        }
+
+        private void ApplyApplicationIcon()
+        {
+            try
+            {
+                Icon appIcon = Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+                if (appIcon != null)
+                {
+                    Icon = appIcon;
+                }
+            }
+            catch
+            {
+                // Keep the default Windows Forms icon if the executable icon cannot be read.
+            }
         }
 
         protected override void OnShown(EventArgs e)
