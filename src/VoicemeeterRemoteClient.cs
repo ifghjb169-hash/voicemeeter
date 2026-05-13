@@ -115,11 +115,33 @@ namespace SoundDeviceSwitcher
             SetAndVerifyDeviceParameter("Bus[0].Device.", "Bus[0].Device.Name", device);
         }
 
+        public void ApplyStartupRouting()
+        {
+            EnsureConnected();
+            SetStripBusRouting(0);
+            SetStripBusRouting(3);
+            SetStripBusRouting(4);
+            PumpParameters(5, 30);
+        }
+
         public void RestartAudioEngine()
         {
             EnsureConnected();
             int result = _setParameterFloat("Command.Restart", 1.0f);
             ThrowIfVmError(result, "Cannot restart Voicemeeter audio engine.");
+        }
+
+        private void SetStripBusRouting(int stripIndex)
+        {
+            SetFloatParameter("Strip[" + stripIndex + "].B1", 1.0f);
+            SetFloatParameter("Strip[" + stripIndex + "].B2", 1.0f);
+            SetFloatParameter("Strip[" + stripIndex + "].Mute", 0.0f);
+        }
+
+        private void SetFloatParameter(string parameter, float value)
+        {
+            int result = _setParameterFloat(parameter, value);
+            ThrowIfVmError(result, "Cannot set Voicemeeter parameter " + parameter + ".");
         }
 
         private void SetDeviceParameter(string prefix, VoicemeeterDevice device)

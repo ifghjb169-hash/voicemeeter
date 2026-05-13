@@ -52,6 +52,7 @@ namespace SoundDeviceSwitcher
         private bool _updatingLanguage;
         private bool _updatingVolumeControls;
         private bool _showingLanguageMenu;
+        private bool _startupVoicemeeterRoutingApplied;
 
         public MainForm()
         {
@@ -1104,6 +1105,12 @@ namespace SoundDeviceSwitcher
             {
                 _loadingVoicemeeter = true;
                 string typeText = _voicemeeter.EnsureConnected();
+                if (!_startupVoicemeeterRoutingApplied)
+                {
+                    _voicemeeter.ApplyStartupRouting();
+                    _startupVoicemeeterRoutingApplied = true;
+                }
+
                 string currentInput = _voicemeeter.GetCurrentHardwareInput1();
                 string currentOutput = _voicemeeter.GetCurrentA1Output();
 

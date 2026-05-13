@@ -228,7 +228,15 @@ namespace SoundDeviceSwitcher
         {
             string[] requiredNames = flow == SoundDeviceFlow.Output
                 ? new[] { "voicemeeter input", "voicemeter input" }
-                : new[] { "voicemeeter output", "voicemeter output", "voicemeeter b1", "voicemeter b1" };
+                : new[]
+                {
+                    "voicemeeter output",
+                    "voicemeter output",
+                    "voicemeeter out b1",
+                    "voicemeter out b1",
+                    "voicemeeter b1",
+                    "voicemeter b1"
+                };
 
             foreach (AudioDevice device in devices)
             {
