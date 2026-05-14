@@ -119,8 +119,14 @@ namespace SoundDeviceSwitcher
         {
             EnsureConnected();
             SetStripBusRouting(0);
+            SetFloatParameter("Strip[0].Gain", 0.0f);
             SetStripBusRouting(3);
+            SetFloatParameter("Strip[3].A1", 1.0f);
+            SetFloatParameter("Strip[3].Gain", 0.0f);
             SetStripBusRouting(4);
+            SetFloatParameter("Bus[0].Mute", 0.0f);
+            SetFloatParameter("Bus[3].Mute", 0.0f);
+            SetFloatParameter("Bus[3].Gain", 0.0f);
             PumpParameters(5, 30);
         }
 
